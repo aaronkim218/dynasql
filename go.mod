@@ -1,4 +1,4 @@
-module dynasql
+module github.com/aaronkim218/dynasql
 
 go 1.24.1
 
