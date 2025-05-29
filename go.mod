@@ -1,4 +1,4 @@
-module github.com/aaronkim218/dynasql
+module github.com/aaronkim218/patchsql
 
 go 1.24.1
 

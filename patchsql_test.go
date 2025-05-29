@@ -1,4 +1,4 @@
-package dynasql
+package patchsql
 
 import (
 	"testing"
@@ -15,7 +15,7 @@ type TestUser struct {
 	Unused   string  // no db tag
 }
 
-func TestGenSetClauseFromFlatStruct(t *testing.T) {
+func TestBuildSetClauseFromFlatStruct(t *testing.T) {
 	username := "johndoe"
 	email := "user@example.com"
 	emailPtr := &email
@@ -29,7 +29,7 @@ func TestGenSetClauseFromFlatStruct(t *testing.T) {
 		Unused:   "value",
 	}
 
-	query, args := GenSetClauseFromFlatStruct(user)
+	query, args := BuildSetClauseFromFlatStruct(user)
 
 	expectedQuery := "SET username = $1, email = $2, age = $3"
 	expectedArgs := []any{username, emailPtr, age}

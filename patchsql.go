@@ -1,4 +1,4 @@
-package dynasql
+package patchsql
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 )
 
 // trusting that input is a flat struct for now
-func GenSetClauseFromFlatStruct(input any) (string, []any) {
+func BuildSetClauseFromFlatStruct(input any) (string, []any) {
 	val := reflect.ValueOf(input)
 	typ := reflect.TypeOf(input)
 
