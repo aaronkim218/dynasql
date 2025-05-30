@@ -15,7 +15,7 @@ type TestUser struct {
 	Unused   string  // no db tag
 }
 
-func TestBuildSetClauseFromFlatStruct(t *testing.T) {
+func TestBuildSetClause(t *testing.T) {
 	username := "johndoe"
 	email := "user@example.com"
 	emailPtr := &email
@@ -29,9 +29,9 @@ func TestBuildSetClauseFromFlatStruct(t *testing.T) {
 		Unused:   "value",
 	}
 
-	query, args := BuildSetClauseFromFlatStruct(user)
+	query, args, _ := BuildSetClause(user)
 
-	expectedQuery := "SET username = $1, email = $2, age = $3"
+	expectedQuery := "username = $1, email = $2, age = $3"
 	expectedArgs := []any{username, emailPtr, age}
 
 	assert.Equal(t, expectedQuery, query)
