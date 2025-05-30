@@ -42,7 +42,7 @@ func BuildSetClause(input any, opts ...option) (string, []any, error) {
 
 	for _, opt := range opts {
 		if err := opt(&o); err != nil {
-			return "", nil, nil
+			return "", nil, err
 		}
 	}
 
@@ -69,7 +69,7 @@ func (o *options) parseStruct(input any) (string, []any, error) {
 			continue
 		}
 
-		dbTag, ok := fieldType.Tag.Lookup(o.tag)
+		tagVal, ok := fieldType.Tag.Lookup(o.tag)
 		if !ok {
 			continue
 		}
@@ -78,7 +78,7 @@ func (o *options) parseStruct(input any) (string, []any, error) {
 			continue
 		}
 
-		setClauses = append(setClauses, fmt.Sprintf("%s = $%d", dbTag, argIndex))
+		setClauses = append(setClauses, fmt.Sprintf("%s = $%d", tagVal, argIndex))
 		argIndex++
 		arguments = append(arguments, fieldVal.Interface())
 	}
